@@ -27,7 +27,7 @@ recebedor <- pbp %>%
   drop_na() %>%
   gt() %>%
   tab_header(title = md("**Desempenho dos recebedores em 2020.**"),
-             subtitle = "Mínimo 100 tentativas. Semanas 1-16.") %>%
+             subtitle = "Mínimo 100 tentativas. Semanas 1-17.") %>%
   tab_source_note("Table: @juanseit_ | Data by @nflfastR.") %>%
   tab_footnote(footnote = "ADOT = profundidade média dos passes tentados, em jardas.", 
                locations = cells_column_labels(columns = vars(adot))) %>%
