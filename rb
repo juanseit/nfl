@@ -28,7 +28,7 @@ rb <- pbp %>%
   drop_na() %>%
   gt() %>%
   tab_header(title = md("**Desempenho dos running backs em 2020.**"),
-             subtitle = "Mínimo 120 corridas. Semanas 1-16.") %>%
+             subtitle = "Mínimo 120 corridas. Semanas 1-17.") %>%
   tab_source_note("Table: @juanseit_ | Data by @nflfastR.") %>%
   data_color(columns = vars(epa_per_rush), 
              colors = scales::col_numeric(palette = c("blue","white","yellow","red"), domain = c(max(epa_per_rush), min(epa_per_rush)))) %>%
