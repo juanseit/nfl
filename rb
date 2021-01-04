@@ -17,7 +17,7 @@ update_db(dbname = "pbp")
 
 rb <- pbp %>%
   filter(rush == 1, season == 2020, down <= 4, week <= 17, !is.na(epa)) %>%
-  group_by(rusher_player_name, posteam) %>%
+  group_by(name, posteam) %>%
   summarize(epa_per_rush = mean(epa), 
             yards_gained = mean(yards_gained), 
             success_rate = mean(success), 
@@ -31,8 +31,8 @@ rb <- pbp %>%
              subtitle = "Mínimo 120 corridas. Semanas 1-16.") %>%
   tab_source_note("Table: @juanseit_ | Data by @nflfastR.") %>%
   data_color(columns = vars(epa_per_rush), 
-             colors = scales::col_numeric(palette = c("blue","white","yellow","red"), domain = c(0.133, -0.22))) %>%
-  cols_label(rusher_player_name = "Running back", 
+             colors = scales::col_numeric(palette = c("blue","white","yellow","red"), domain = c(max(epa_per_rush), min(epa_per_rush)))) %>%
+  cols_label(name = "Running back", 
              posteam = "Time", 
              epa_per_rush = "EPA/play", 
              yards_gained = "Jardas Ganhas", 
