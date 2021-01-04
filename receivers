@@ -32,7 +32,7 @@ recebedor <- pbp %>%
   tab_footnote(footnote = "ADOT = profundidade média dos passes tentados, em jardas.", 
                locations = cells_column_labels(columns = vars(adot))) %>%
   data_color(columns = vars(total_epa), 
-             colors = scales::col_numeric(palette = c("blue","white","yellow","red"), domain = c(80.1, -18))) %>%
+             colors = scales::col_numeric(palette = c("blue","white","yellow","red"), domain = c(max(total_epa), min(total_epa)))) %>%
   cols_label(receiver_player_name = "Recebedor",
              posteam = "Time",
              total_epa = "EPA Total",
