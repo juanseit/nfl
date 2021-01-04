@@ -42,7 +42,7 @@ evolution_o <- pbp %>% #ataque
        subtitle = "Temporada 2020, por semana.",
        y = "EPA por jogada.",
        x = "Semanas.",
-       caption = "Figure: @juanseit_ | Data by @nflfastR") +
+       caption = "Figure: @juanseit_ | Data by @nflfastR.") +
   theme_bw() +
   theme(
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
@@ -55,7 +55,7 @@ evolution_o #resultado
 evolution_d <- pbp %>% #defesa
   filter(defteam == "BAL", season == 2020, down <= 4, week <= 17, !is.na(epa)) %>%
   group_by(week) %>%
-  summarize(epa_per_play = mean(epa), week, team = last(defteam)) %>%
+  summarize(epa_per_play = mean(epa), week, team = last(posteam)) %>%
   ungroup() %>%
   left_join(teams_colors_logos, by = c('team' = 'team_abbr')) %>%
   ggplot(mapping = aes(x = week, y = epa_per_play)) +
@@ -66,7 +66,7 @@ evolution_d <- pbp %>% #defesa
        subtitle = "Temporada 2020, por semana.",
        y = "EPA por jogada.",
        x = "Semanas.",
-       caption = "Figure: @juanseit_ | Data by @nflfastR") +
+       caption = "Figure: @juanseit_ | Data by @nflfastR.") +
   theme_bw() +
   theme(
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
@@ -89,7 +89,7 @@ qb_report <- pbp %>% #qbs
   drop_na() %>%
   gt() %>%
   tab_header(title = md("**Desempenho dos Quarterbacks em 2020.**"),
-             subtitle = "Semanas 1 a 16. Mínimo 10 snaps.") %>%
+             subtitle = "Semanas 1 a 17. Mínimo 10 snaps.") %>%
   tab_source_note("Table: @juanseit_ | Data by @nflfastR and PFF.") %>%
   cols_label(name = "Quarterback", 
              epa_per_dropback = "EPA/play", 
@@ -130,7 +130,7 @@ lamar_epa <- pbp %>% #EPA
        subtitle = "Temporada 2020, por semana.",
        y = "EPA/Play.",
        x = "Semanas.",
-       caption = "Figure: @juanseit_ | Data by @nflfastR") +
+       caption = "Figure: @juanseit_ | Data by @nflfastR.") +
   theme_bw() +
   theme(
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
@@ -152,7 +152,7 @@ lamar_cpoe <- pbp %>% #CPOE
        subtitle = "Temporada 2020, por semana.",
        y = "CPOE.",
        x = "Semanas.",
-       caption = "Figure: @juanseit_ | Data by @nflfastR") +
+       caption = "Figure: @juanseit_ | Data by @nflfastR.") +
   theme_bw() +
   theme(
     plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
