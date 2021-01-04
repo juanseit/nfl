@@ -15,6 +15,18 @@ pbp <- purrr::map_df(seasons, function(x) {
 })
 
 #Ravens report
+#EPA médio de ataque e defesa
+epa_o <- pbp %>%
+  filter(season == 2020, week <= 17, down <= 4, !is.na(epa)) %>%
+  group_by(posteam) %>%
+  summarize(epa = mean(epa)) %>%
+  ungroup()
+
+epa_d <- pbp %>%
+  filter(season == 2020, week <= 17, down <= 4, !is.na(epa)) %>%
+  group_by(defteam) %>%
+  summarize(epa = mean(epa)) %>%
+  ungroup()
 
 evolution_o <- pbp %>% #ataque
   filter(posteam == "BAL", season == 2020, down <= 4, week <= 17, !is.na(epa)) %>%
@@ -25,7 +37,7 @@ evolution_o <- pbp %>% #ataque
   ggplot(mapping = aes(x = week, y = epa_per_play)) +
   geom_line(color = "purple", size = 2) +
   geom_image(aes(image = team_logo_espn)) +
-  geom_hline(yintercept = 0.0431875, color = "red",linetype = "dashed", alpha=0.5) +
+  geom_hline(yintercept = mean(epa_o$epa), color = "red",linetype = "dashed", alpha=0.5) +
   labs(title = "Evolução do ataque dos Ravens em EPA/Play.",
        subtitle = "Temporada 2020, por semana.",
        y = "EPA por jogada.",
@@ -49,7 +61,7 @@ evolution_d <- pbp %>% #defesa
   ggplot(mapping = aes(x = week, y = epa_per_play)) +
   geom_line(color = "purple", size = 2) +
   geom_image(aes(image = team_logo_espn)) +
-  geom_hline(yintercept = 0.04396875, color = "red",linetype = "dashed", alpha=0.5) +
+  geom_hline(yintercept = mean(epa_d$epa), color = "red",linetype = "dashed", alpha=0.5) +
   labs(title = "Evolução da defesa dos Ravens em EPA/Play.",
        subtitle = "Temporada 2020, por semana.",
        y = "EPA por jogada.",
