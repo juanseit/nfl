@@ -78,20 +78,20 @@ evolution_d #resultado
 
 qb_report <- pbp %>% #qbs
   filter(posteam == "BAL", season == 2020, down <= 4, week <= 17, !is.na(epa)) %>%
-  group_by(passer_player_name) %>%
+  group_by(name) %>%
   summarize(epa_per_dropback = mean(qb_epa), 
             cpoe = mean(cpoe, na.rm = T), 
             success_rate = mean(success), 
             first_down = mean(first_down), plays = n()) %>%
   ungroup() %>%
   filter(plays >= 10 & plays < 592) %>%
-  mutate(pff = c(79,52.9,57.4)) %>%
+  mutate(pff = c(81.9,52.9,57.4)) %>%
   drop_na() %>%
   gt() %>%
   tab_header(title = md("**Desempenho dos Quarterbacks em 2020.**"),
              subtitle = "Semanas 1 a 16. Mínimo 10 snaps.") %>%
   tab_source_note("Table: @juanseit_ | Data by @nflfastR and PFF.") %>%
-  cols_label(passer_player_name = "Quarterback", 
+  cols_label(name = "Quarterback", 
              epa_per_dropback = "EPA/play", 
              cpoe = "CPOE", success_rate = "SR%", 
              first_down = "First down%", plays = "Snaps", pff = "PFF Grade") %>%
@@ -117,7 +117,7 @@ qb_epa_m <- pbp %>%
   filter(plays >= 200)
 
 lamar_epa <- pbp %>% #EPA
-  filter(passer_player_name == "L.Jackson", season == 2020, down <= 4, week <= 17, !is.na(epa)) %>%
+  filter(name == "L.Jackson", season == 2020, down <= 4, week <= 17, !is.na(epa)) %>%
   group_by(week) %>%
   summarize(epa = mean(qb_epa), week, team = last(defteam)) %>%
   ungroup() %>%
@@ -139,7 +139,7 @@ lamar_epa <- pbp %>% #EPA
   scale_x_continuous(breaks = scales::pretty_breaks(n = 17))
 
 lamar_cpoe <- pbp %>% #CPOE
-  filter(passer_player_name == "L.Jackson", season == 2020, down <= 4, week <= 17, !is.na(cpoe)) %>%
+  filter(name == "L.Jackson", season == 2020, down <= 4, week <= 17, !is.na(cpoe)) %>%
   group_by(week) %>%
   summarize(cpoe = mean(cpoe, na.rm = TRUE), week, team = last(defteam)) %>%
   ungroup() %>%
