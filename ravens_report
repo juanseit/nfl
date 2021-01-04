@@ -85,7 +85,7 @@ qb_report <- pbp %>% #qbs
             first_down = mean(first_down), plays = n()) %>%
   ungroup() %>%
   filter(plays >= 10 & plays < 592) %>%
-  mutate(pff = c(81.9,52.9,57.4)) %>%
+  mutate(pff = c(81.5,52.9,57.4)) %>%
   drop_na() %>%
   gt() %>%
   tab_header(title = md("**Desempenho dos Quarterbacks em 2020.**"),
