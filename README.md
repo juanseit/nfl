@@ -1,2 +1,2 @@
 # nfl
-codes from nflfastR
+codes from @nflfastR
