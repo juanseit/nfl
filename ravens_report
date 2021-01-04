@@ -55,7 +55,7 @@ evolution_o #resultado
 evolution_d <- pbp %>% #defesa
   filter(defteam == "BAL", season == 2020, down <= 4, week <= 17, !is.na(epa)) %>%
   group_by(week) %>%
-  summarize(epa_per_play = mean(epa), week, team = last(posteam)) %>%
+  summarize(epa_per_play = mean(epa), week, team = last(defteam)) %>%
   ungroup() %>%
   left_join(teams_colors_logos, by = c('team' = 'team_abbr')) %>%
   ggplot(mapping = aes(x = week, y = epa_per_play)) +
