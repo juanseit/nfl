@@ -106,7 +106,15 @@ qb_report <- pbp %>% #qbs
     suffixing = TRUE
   ) %>%
   cols_align(align = c("center"), columns = TRUE) %>%
-  cols_move(columns = vars(pff), after = vars(epa_per_dropback))
+  cols_move(columns = vars(pff), after = vars(epa_per_dropback)) %>%
+  gt_theme_538(table.width = px(550)) %>%
+  data_color(
+    columns = vars(pff),
+    colors = scales::col_numeric(
+      palette = c("white", "#3fc1c9"),
+      domain = NULL
+    )
+  )
 
 qb_report #resultado
 
