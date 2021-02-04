@@ -49,6 +49,7 @@ recebedor <- pbp %>%
     decimals = 1,
     suffixing = TRUE
   ) %>%
-  cols_align(align = c("center"), columns = TRUE)
+  cols_align(align = c("center"), columns = TRUE) %>%
+gt_theme_538(table.width = px(550))
   
 recebedor #tabela
