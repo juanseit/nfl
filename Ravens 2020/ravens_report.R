@@ -37,16 +37,13 @@ evolution_o <- pbp %>% #ataque
   ggplot(mapping = aes(x = week, y = epa_per_play)) +
   geom_line(color = "purple", size = 2) +
   geom_image(aes(image = team_logo_espn)) +
-  geom_hline(yintercept = mean(epa_o$epa), color = "red",linetype = "dashed", alpha=0.5) +
+  geom_hline(yintercept = mean(epa_o$epa), color = "white",linetype = "dashed") +
   labs(title = "Evolução do ataque dos Ravens em EPA/Play.",
        subtitle = "Temporada 2020, por semana.",
        y = "EPA por jogada.",
        x = "Semanas.",
        caption = "Figure: @juanseit_ | Data by @nflfastR.") +
-  theme_bw() +
-  theme(
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
-  ) +
+  theme_theathletic() +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 17))
 
@@ -61,16 +58,13 @@ evolution_d <- pbp %>% #defesa
   ggplot(mapping = aes(x = week, y = epa_per_play)) +
   geom_line(color = "purple", size = 2) +
   geom_image(aes(image = team_logo_espn)) +
-  geom_hline(yintercept = mean(epa_d$epa), color = "red",linetype = "dashed", alpha=0.5) +
+  geom_hline(yintercept = mean(epa_d$epa), color = "white",linetype = "dashed") +
   labs(title = "Evolução da defesa dos Ravens em EPA/Play.",
        subtitle = "Temporada 2020, por semana.",
        y = "EPA por jogada.",
        x = "Semanas.",
        caption = "Figure: @juanseit_ | Data by @nflfastR.") +
-  theme_bw() +
-  theme(
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
-  ) +
+  theme_theathletic +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 17))
 
@@ -133,16 +127,13 @@ lamar_epa <- pbp %>% #EPA
   ggplot(mapping = aes(x = week, y = epa)) +
   geom_line(color = "purple", size = 2) +
   geom_image(aes(image = team_logo_espn)) +
-  geom_hline(yintercept = mean(qb_epa_m$epa), color = "red",linetype = "dashed", alpha=0.5) +
+  geom_hline(yintercept = mean(qb_epa_m$epa), color = "white",linetype = "dashed") +
   labs(title = "Evolução de Lamar Jackson em EPA/Play.",
        subtitle = "Temporada 2020, por semana.",
        y = "EPA/Play.",
        x = "Semanas.",
        caption = "Figure: @juanseit_ | Data by @nflfastR.") +
-  theme_bw() +
-  theme(
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
-  ) +
+  theme_theathletic() +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 17))
 
@@ -155,15 +146,12 @@ lamar_cpoe <- pbp %>% #CPOE
   ggplot(mapping = aes(x = week, y = cpoe)) +
   geom_line(color = "purple", size = 2) +
   geom_image(aes(image = team_logo_espn)) +
-  geom_hline(yintercept = mean(qb_epa_m$cpoe), color = "red",linetype = "dashed", alpha=0.5) +
+  geom_hline(yintercept = mean(qb_epa_m$cpoe), color = "white", linetype = "dashed") +
   labs(title = "Evolução de Lamar Jackson em CPOE.",
        subtitle = "Temporada 2020, por semana.",
        y = "CPOE.",
        x = "Semanas.",
        caption = "Figure: @juanseit_ | Data by @nflfastR.") +
-  theme_bw() +
-  theme(
-    plot.title = element_text(size = 14, hjust = 0.5, face = "bold")
-  ) +
+  theme_theathletic() +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 17))
