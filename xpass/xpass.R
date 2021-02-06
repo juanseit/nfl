@@ -16,15 +16,17 @@ pbp_2 <- purrr::map_df(seasons_2, function(x) {
   )
 }) %>% add_xpass()
 
-pbp_2 %>% #bar plot
+passoe <- pbp_2 %>% #bar plot
   filter(season == 2020, week <= 17, down <= 2, !is.na(pass_oe), vegas_wp > 0.05, vegas_wp < 0.95, half_seconds_remaining > 120) %>%
   group_by(posteam) %>%
   summarize(pass_oe = mean(pass_oe), team = last(posteam)) %>%
   left_join(teams_colors_logos, by = c('team' = 'team_abbr'), size = 0.03, asp = 16/9) %>%
   ungroup() %>%
-  arrange(-pass_oe) %>%
+  arrange(-pass_oe)
+
+passoe %>%
   ggplot(mapping = aes(x = reorder(team,pass_oe), y = pass_oe)) +
-  geom_col(fill =  "#013369", colour = "black", width = 0.4) +
+  geom_col(aes(fill = if_else(pass_oe < 0, "#013369", "#D50A0A")), colour = "black", width = 0.4) +
   geom_image(aes(image = team_logo_espn)) +
   labs(x = "Times.",
        y = "Percentual de passes acima do esperado.",
@@ -32,6 +34,7 @@ pbp_2 %>% #bar plot
        caption = "Figure: @juanseit_ | Data: @nflfastR",
        subtitle = "Probabilidade de vitória entre 95% e 5%, antes do two-minute warning.") +
   theme_539()+
+  theme(legend.position = "none") +
   theme(axis.title.x = element_blank(),
         axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
