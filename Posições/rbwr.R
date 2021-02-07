@@ -44,12 +44,12 @@ lm_rb <- rb_3 %>%
   ggplot(mapping = aes(x = rbwr, y = epa_per_rush)) +
   geom_point(color = "#91c390", size =  4) +
   stat_smooth(method = "lm", color = "#359fda") + 
-  geom_text(aes(0.68,0.1,label = "R^2 =  0.2361")) +
+  geom_text(aes(0.68,0.1,label = "R^2 =  0.2415")) +
   labs(x = "Run Block Win Rate (%)",
        y = "EPA/Play",
        title = "Como as linhas ofensivas impactam o desempenho dos Running Backs.",
-       subtitle = "MÌnimo 100 corridas por RB.",
-       caption = "Gr·fico: @juanseit_ | Data by @nflfastR and ESPN.") +
+       subtitle = "M√≠nimo 100 corridas por RB.",
+       caption = "Gr√°fico: @juanseit_ | Data by @nflfastR and ESPN.") +
 theme_539() +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 10))
