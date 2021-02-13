@@ -26,8 +26,9 @@ passoe <- pbp_2 %>% #bar plot
 
 passoe %>%
   ggplot(mapping = aes(x = reorder(team,pass_oe), y = pass_oe)) +
-  geom_col(aes(fill = if_else(pass_oe < 0, "#013369", "#D50A0A")), colour = "black", width = 0.4) +
+  geom_col(aes(fill = if_else(pass_oe < 0, "#013369", "blue")), colour = "black", width = 0.4) +
   geom_image(aes(image = team_logo_espn)) +
+  scale_fill_identity() +
   labs(x = "Times.",
        y = "Percentual de passes acima do esperado.",
        title = "Passes acima do esperado em early-downs (2020).",
