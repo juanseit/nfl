@@ -42,7 +42,7 @@ rb_3 <- pbp_rbwr %>%
 
 lm_rb <- rb_3 %>%
   ggplot(mapping = aes(x = rbwr, y = epa_per_rush)) +
-  geom_point(color = "white", fill = "red", size =  4) +
+  geom_point(color = "white", fill = "red", size =  4, pch = 21) +
   stat_smooth(method = "lm", se = FALSE, color = "white") + 
   geom_text(aes(0.68,0.1,label = "R^2 =  0.2415")) +
   labs(x = "Run Block Win Rate (%)",
