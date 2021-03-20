@@ -21,9 +21,9 @@ tabela_draft_16 <- draft_16 %>%
   left_join(draft_value, by ="Pick")
 
 valor_2020 <- tabela_draft_20 %>%
-  filter(!is.na(DrAV)) %>%
+  filter(!is.na(CarAV)) %>%
   group_by(Tm) %>%
-  summarize(capital_2020 = sum(Value), av_2020 = sum(DrAV)) %>%
+  summarize(capital_2020 = sum(Value), av_2020 = sum(CarAV)) %>%
   ungroup()
 
 valor_2020 <- valor_2020 %>%
@@ -40,9 +40,9 @@ valor_2020 <- valor_2020 %>%
   ))
 
 valor_2019 <- tabela_draft_19 %>%
-  filter(!is.na(DrAV)) %>%
+  filter(!is.na(CarAV)) %>%
   group_by(Tm) %>%
-  summarize(capital_2019 = sum(Value), av_2019 = sum(DrAV)) %>%
+  summarize(capital_2019 = sum(Value), av_2019 = sum(CarAV)) %>%
   ungroup()
 
 valor_2019 <- valor_2019 %>%
@@ -59,9 +59,9 @@ valor_2019 <- valor_2019 %>%
   ))
 
 valor_2018 <- tabela_draft_18 %>%
-  filter(!is.na(DrAV)) %>%
+  filter(!is.na(CarAV)) %>%
   group_by(Tm) %>%
-  summarize(capital_2018 = sum(Value), av_2018 = sum(DrAV)) %>%
+  summarize(capital_2018 = sum(Value), av_2018 = sum(CarAV)) %>%
   ungroup()
 
 valor_2018 <- valor_2018 %>%
@@ -78,9 +78,9 @@ valor_2018 <- valor_2018 %>%
   ))
 
 valor_2017 <- tabela_draft_17 %>%
-  filter(!is.na(DrAV)) %>%
+  filter(!is.na(CarAV)) %>%
   group_by(Tm) %>%
-  summarize(capital_2017 = sum(Value), av_2017 = sum(DrAV)) %>%
+  summarize(capital_2017 = sum(Value), av_2017 = sum(CarAV)) %>%
   ungroup()
 
 valor_2017 <- valor_2017 %>%
@@ -97,9 +97,9 @@ valor_2017 <- valor_2017 %>%
   ))
 
 valor_2016 <- tabela_draft_16 %>%
-  filter(!is.na(DrAV)) %>%
+  filter(!is.na(CarAV)) %>%
   group_by(Tm) %>%
-  summarize(capital_2016 = sum(Value), av_2016 = sum(DrAV)) %>%
+  summarize(capital_2016 = sum(Value), av_2016 = sum(CarAV)) %>%
   ungroup()
 
 valor_2016 <- valor_2016 %>%
@@ -140,6 +140,40 @@ tabela_draft %>%
 
 ggsave("draft.png", width = 12, height = 9, dpi = 300)
 
+tabela_dc <- tabela_draft_16 %>%
+  filter(!is.na(CarAV),!is.na(Pick),!is.na(Value)) %>%
+  group_by(Tm) %>%
+  summarize(valor = Value, picks = Pick, carreira = CarAV) %>%
+  ungroup()
 
+tabela_dc <- tabela_dc %>%
+  rename(team = Tm) %>%
+  mutate(team = case_when(
+    team == "GNB" ~ "GB",
+    team == "KAN" ~ "KC",
+    team == "NOR" ~ "NO",
+    team == "NWE" ~ "NE",
+    team == "SFO" ~ "SF",
+    team == "TAM" ~ "TB",
+    team == "LVR" ~ "LV",
+    TRUE ~ team
+  ))
 
+tab_f <- tabela_dc %>%
+  left_join(nflfastR::teams_colors_logos, by = c("team" = "team_abbr"))
 
+tab_f %>%
+  ggplot(aes(x=picks)) +
+  geom_line(aes(y=valor), color = "white", alpha =.8, lwd = 1.5) +
+  geom_point(aes(y=carreira), color = tab_f$team_color, alpha = .5, size = 4) +
+  scale_color_identity() +
+  labs(x = "Pick.",
+       y = "Valor gerado em AV.",
+       title = "O valor das Picks tem retornos marginais.",
+       subtitle = "AV de cada pick do draft de 2016.",
+       caption = "Gráfico: @juanseit_ | Data by Pro Football Refence.") +
+  theme_theathletic() +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
+  scale_x_continuous(breaks = scales::pretty_breaks(n = 10))
+
+ggsave("draft_picks.png", width = 12, height = 9, dpi = 300)
