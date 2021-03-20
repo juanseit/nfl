@@ -129,11 +129,11 @@ tabela_draft %>%
   left_join(nflfastR::teams_colors_logos, by = c("team" = "team_abbr")) %>%
   ggplot(mapping = aes(x = capt, y = av_t)) +
   geom_image(aes(image = team_logo_espn), asp = 16 / 9) +
-  labs(x = "Draft Capital (Em AV mÈdio por Pick).",
+  labs(x = "Draft Capital (Em AV m√©dio por Pick).",
        y = "AV acumulado pelos jogadores escolhidos.",
        title = "Os times que melhor draftam na NFL.",
        subtitle = "Usando o AV do Pro Football Reference para qualicar os drafts de 2016 a 2020.",
-       caption = "Gr·fico: @juanseit_ | Data by Pro Football Reference.") +
+       caption = "Gr√°fico: @juanseit_ | Data by Pro Football Reference.") +
   theme_theathletic() +
   scale_y_continuous(breaks = scales::pretty_breaks(n = 10)) +
   scale_x_continuous(breaks = scales::pretty_breaks(n = 10))
