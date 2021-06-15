@@ -28,12 +28,32 @@ calc_media %>%
   geom_image(aes(700,.25,image = team_logo_espn), asp = 16/9) +
   geom_hline(yintercept = mean(media_epa$epa), color = "black", linetype = "dashed") +
   scale_color_identity() +
-  labs(title = "MÈdias moveis dos ataques da AFC North em 2020, em EPA/Play.",
-       subtitle = "MÈdia movel de 200 jogadas.",
-       caption = "Gr·fico: @juanseit_ | Data by @nflfastR.",
+  labs(title = "M√©dias moveis dos ataques da AFC North em 2020, em EPA/Play.",
+       subtitle = "M√©dia movel de 200 jogadas.",
+       caption = "Gr√°fico: @juanseit_ | Data by @nflfastR.",
        x = "Jogadas.",
        y = "EPA/Play movel.") +
   theme_bw() +
+  theme(
+    line = element_line(lineend = 'round', color='darkblue'),
+    text = element_text(color='darkblue'),
+    plot.background = element_rect(fill = 'grey95', color = 'transparent'),
+    panel.border = element_rect(color = 'darkblue', fill = NA),
+    panel.background = element_rect(fill = 'white', color = 'transparent'),
+    axis.ticks = element_line(color = 'darkblue', size = 0.5),
+    axis.ticks.length = unit(2.75, 'pt'),
+    axis.title = element_text(size = 8),
+    axis.text = element_text(size = 7, color = 'darkblue'),
+    plot.title = element_text(size = 14),
+    plot.subtitle = element_text(size = 8),
+    plot.caption = element_text(size = 5),
+    legend.background = element_rect(fill = 'grey90', color = 'darkblue'),
+    legend.key = element_blank(),
+    panel.grid.minor = element_blank(),
+    panel.grid.major = element_line(color='grey85', size = 0.3),
+    axis.title.y = element_text(vjust = 0.5),
+    strip.background = element_rect(color = "darkblue")
+  ) +
   facet_wrap(~ posteam, nrow = 2) +
   xlim(200,1200)
 
